@@ -29,7 +29,7 @@ namespace pavlovLab.Models
 
        public override string ToString()
        {
-           return $" Spare '{name}' with id {id_spare}, price: {price}; quantity in stock: {quantity}; average delivery time: {delivery_time}";
+           return $" Spare '{name}' with id {Id}, price: {price}; quantity in stock: {quantity}; average delivery time: {delivery_time}";
        }
    }
 }
