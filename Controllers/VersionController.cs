@@ -6,15 +6,26 @@ using Microsoft.AspNetCore.Mvc;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using pavlovLab.Models;
 
-[Route("api/[controller]")]
-   [ApiController]
-   public class VersionController : ControllerBase
-   {
-       // GET api/values
-       [HttpGet]
-       public ActionResult<string> Get()
-       {
-           return Ok(Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion);
-       }
-   }
+namespace pavlovLab.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class VersionController : ControllerBase
+    {
+        // GET api/values
+        [HttpGet]
+        public ActionResult<string> Get()
+        {
+            var versionInfo = new VersionData
+            {
+                Company = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyCompanyAttribute>().Company,
+                Product = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyProductAttribute>().Product,
+                ProductVersion = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion
+            };
+
+            return Ok(versionInfo);
+        }
+    }
+}
