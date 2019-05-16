@@ -1,19 +1,22 @@
 using System;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
 namespace pavlovLab.Models
 {
     public class MyModData
     {
-        public string id_spare { get; set; }
+        public Guid Id { get; set; } = Guid.Empty;
         public string name { get; set; }
         public double price { get; set; }
         public int quantity { get; set; }
         public int delivery_time { get; set; }
+		
     public BaseModelValidationResult Validate()
        {
            var validationResult = new BaseModelValidationResult();
-           if (string.IsNullOrWhiteSpace(id_spare)) validationResult.Append($"ID spare cannot be empty");
-
+           
            if (string.IsNullOrWhiteSpace(name)) validationResult.Append($"Name cannot be empty");
            if (!string.IsNullOrEmpty(name) && !char.IsUpper(name.FirstOrDefault())) validationResult.Append($"Name {name} should start from capital letter");
 
@@ -26,7 +29,7 @@ namespace pavlovLab.Models
 
        public override string ToString()
        {
-           return $" Spare '{name}' with id {id_spare}, price: {price}; quantity in stock: {quantity}; average delivery time: {delivery_time}";
+           return $" Spare '{name}' with id {Id}, price: {price}; quantity in stock: {quantity}; average delivery time: {delivery_time}";
        }
    }
 }
