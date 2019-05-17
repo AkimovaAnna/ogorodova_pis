@@ -12,8 +12,13 @@ namespace pavlovLab.Controllers
     [ApiController]
     public class MyModController : ControllerBase
     {
-        private static IStorage<MyModData> _memCache = new MemCache();
+        private IStorage<MyModData> _memCache;
 
+        public MyModController(IStorage<MyModData> memCache)
+        {
+            _memCache = memCache;
+        }
+        
         [HttpGet]
         public ActionResult<IEnumerable<MyModData>> Get()
         {
