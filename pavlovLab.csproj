@@ -2,12 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <Version>0.0.4-rc.1</Version>
    <Authors>Mukhina P.P., Ogorodova A.I.</Authors>
    <Company>auto-shipping.com</Company>
    <Product>Labs</Product>
    <PackageId>MyApp</PackageId>
-   <FileVersion>0.0.1</FileVersion>
 
   </PropertyGroup>
 
@@ -16,6 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="GitVersion" Version="3.6.5" />
+    <PackageReference Include="GitVersionTask" Version="5.0.1">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
   </ItemGroup>
