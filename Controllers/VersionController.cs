@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using pavlovLab.Models;
+using Serilog;
 
 namespace pavlovLab.Controllers
 {
@@ -18,12 +19,17 @@ namespace pavlovLab.Controllers
         [HttpGet]
         public ActionResult<string> Get()
         {
+            Log.Information("Acquiring version info");
+
             var versionInfo = new VersionData
             {
                 Company = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyCompanyAttribute>().Company,
                 Product = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyProductAttribute>().Product,
                 ProductVersion = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion
             };
+
+            Log.Information($"Acquired version is {versionInfo.ProductVersion}");
+            Log.Debug($"Full version info: {@versionInfo}");
 
             return Ok(versionInfo);
         }
